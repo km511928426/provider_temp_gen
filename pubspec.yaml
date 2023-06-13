@@ -1,0 +1,19 @@
+name: provider_temp_gen
+description: provider_base_tools 模板生成工具.
+version: 1.0.2
+homepage: https://github.com/km511928426/provider_temp_gen
+repository: https://github.com/km511928426/provider_temp_gen
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  path: ^1.8.0
+  args: ^2.3.1
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
+
+executables:
+  provider_temp_gen: provider_temp_gen
