@@ -3,7 +3,7 @@
  * @Version: 1.0
  * @Date: 2023-04-25 13:04:14
  * @LastEditors: cheng
- * @LastEditTime: 2023-06-13 16:54:03
+ * @LastEditTime: 2023-06-13 17:58:34
  * @FilePath: \provider_temp_gen\README.md
  * @ObjectDescription: 使用说明  window mac通用
 -->
@@ -14,7 +14,7 @@ provider模版生成器
 
 1. #### 安装    （window和mac通用）
     ```
-    dart pub global activate --source git https://e.coding.net/km511928426/provider_temp_gen/provider.git (推荐  通过git安装)
+    dart pub global activate --source git https://github.com/km511928426/provider_temp_gen.git (推荐  通过git安装)
     dart pub global activate path: provider_temp_gen (通过本地安装)`
     ```
 2. #### 使用
