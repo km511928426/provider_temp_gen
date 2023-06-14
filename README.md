@@ -14,8 +14,7 @@ provider模版生成器
 
 1. #### 安装    （window和mac通用）
     ```
-    dart pub global activate --source git https://github.com/km511928426/provider_temp_gen.git (推荐  通过git安装)
-    dart pub global activate provider_temp_gen (通过本地自定查询线上安装)`
+    dart pub global activate provider_temp_gen
     ```
 2. #### 使用
     ```

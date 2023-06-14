@@ -7,8 +7,8 @@
  * @FilePath: \provider_temp_gen\CHANGELOG.md
  * @ObjectDescription: 
 -->
-## 1.0.4
+## 1.0.5
 
-# This is the provider_base_tools template generator, please integrate the provider_base_tools first Reuse this plugin
+# This is the provider_base_tools template generator tools, please integrate the provider_base_tools first Reuse this plugin
 
 - Initial version.
