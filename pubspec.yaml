@@ -1,6 +1,6 @@
 name: provider_temp_gen
 description: provider_base_tools Template Generation Tool. This is the provider_base_tools template generator, please integrate the provider_base_tools first Reuse this plugin
-version: 1.0.6
+version: 1.0.7
 homepage: https://github.com/km511928426/provider_temp_gen
 repository: https://github.com/km511928426/provider_temp_gen
 
