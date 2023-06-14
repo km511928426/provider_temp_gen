@@ -7,8 +7,8 @@
  * @FilePath: \provider_temp_gen\CHANGELOG.md
  * @ObjectDescription: 
 -->
-## 1.0.3
+## 1.0.4
 
-# provider_base_tools 模板生成器
+# This is the provider_base_tools template generator, please integrate the provider_base_tools first Reuse this plugin
 
 - Initial version.
