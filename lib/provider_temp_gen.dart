@@ -122,23 +122,23 @@ class ProviderTempGen {
   }
 
   /// 驼峰转下横线
-  String _hump2Underline(String para) {
-    String newString = '';
-    if (!para.contains('_')) {
-      for (int i = 0; i < para.length; i++) {
-        if (charIsUpperCase(para[i])) {
-          newString += '_${para[i].toLowerCase()}';
-        } else {
-          newString += para[i];
-        }
-      }
-    }
-    if (newString[0] == '_') {
-      return newString.substring(1);
-    } else {
-      return newString;
-    }
-  }
+  // String _hump2Underline(String para) {
+  //   String newString = '';
+  //   if (!para.contains('_')) {
+  //     for (int i = 0; i < para.length; i++) {
+  //       if (charIsUpperCase(para[i])) {
+  //         newString += '_${para[i].toLowerCase()}';
+  //       } else {
+  //         newString += para[i];
+  //       }
+  //     }
+  //   }
+  //   if (newString[0] == '_') {
+  //     return newString.substring(1);
+  //   } else {
+  //     return newString;
+  //   }
+  // }
 
   // 下划线转驼峰
   String _upTolower(String para) {
