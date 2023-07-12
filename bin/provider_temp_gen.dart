@@ -3,7 +3,7 @@
  * @Version: 1.0
  * @Date: 2023-04-25 13:04:14
  * @LastEditors: cheng
- * @LastEditTime: 2023-06-01 18:22:49
+ * @LastEditTime: 2023-07-12 10:33:52
  * @FilePath: \provider_temp_gen\bin\provider_temp_gen.dart
  * @ObjectDescription: 
  */
@@ -23,6 +23,7 @@ void main(List<String> args) async {
       defaultsTo: 'page',
       help: 'provider template name',
       allowed: [
+        'provider',
         'stateful',
         'stateless',
       ],
@@ -52,6 +53,8 @@ void main(List<String> args) async {
       exit(1);
     }
 
+    var matcher = RegExp(r'^[a-z][a-z_]{3,50}$');
+
     final name = result['name'];
     final genPath = result['gen-path'];
     final temp = provider_temp_gen_config.convertTemp(result['template']);
@@ -59,8 +62,9 @@ void main(List<String> args) async {
       print('name 不能为空');
       exit(2);
     }
-    if (name?.isUpperCase() == false) {
-      print('name 首字母必须大写');
+
+    if (!matcher.hasMatch(name ?? '')) {
+      print('name 首字母必须小写');
       exit(2);
     }
     if ((genPath as String?)?.isNotEmpty != true) {
@@ -71,6 +75,7 @@ void main(List<String> args) async {
       print('模版不能为空');
       exit(2);
     }
+
     final futures = provider_temp_gen.ProviderTempGen(
             psiPath: genPath!, name: name!, temp: temp)
         .generate();
@@ -84,10 +89,10 @@ void main(List<String> args) async {
   }
 }
 
-extension StringExt on String {
-  bool? isUpperCase() {
-    String first = substring(0, 1);
-    String second = substring(0, 1);
-    return first == second.toUpperCase();
-  }
-}
+// extension StringExt on String {
+//   bool? isUpperCase() {
+//     String first = substring(0, 1);
+//     String second = substring(0, 1);
+//     return first == second.toUpperCase();
+//   }
+// }

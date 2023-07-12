@@ -4,6 +4,7 @@ import 'package:provider_temp_gen/lock.dart';
 
 import 'config.dart';
 import 'temps/component.dart' as component;
+import 'temps/provider.dart' as provider;
 
 class ProviderTempGen {
   final String name;
@@ -19,25 +20,38 @@ class ProviderTempGen {
 
   List<Future<void>> generate() {
     switch (temp) {
+      case Temp.provider:
+        return _generateComponent(Temp.provider);
       case Temp.stateless:
-        return _generateComponent();
+        return _generateComponent(Temp.stateless);
       case Temp.stateful:
-        return _generateComponent();
+        return _generateComponent(Temp.stateful);
     }
   }
 
-  List<Future<void>> _generateComponent() {
+  List<Future<void>> _generateComponent(Temp temp) {
     final List<Future<void>> futures = <Future<void>>[];
-    final String subPackage = _hump2Underline(name);
+    // final String subPackage = _hump2Underline(name);
+    final String subPackage = name;
 
     futures.add(_generateFile(
-        component.componet, '$psiPath/$subPackage', '$subPackage.dart'));
+        temp == Temp.provider ? component.componet : provider.provider,
+        '$psiPath/$subPackage',
+        '$subPackage.dart'));
     futures.add(_generateFile(
-        component.bean, '$psiPath/$subPackage/bean', 'bean.dart'));
+        temp == Temp.provider ? component.bean : provider.bean,
+        '$psiPath/$subPackage/bean',
+        'bean.dart'));
     futures.add(_generateFile(
-        component.model, '$psiPath/$subPackage/model', 'model.dart'));
-    futures.add(_generateFile(component.modelContidion,
-        '$psiPath/$subPackage/model', 'model_contidion.dart'));
+        temp == Temp.provider ? component.model : provider.model,
+        '$psiPath/$subPackage/model',
+        'model.dart'));
+    futures.add(_generateFile(
+        temp == Temp.provider
+            ? component.modelCondition
+            : provider.modelCondition,
+        '$psiPath/$subPackage/model',
+        'model_contidion.dart'));
     // futures.add(_generateFile(
     //     component.modelGet, '$psiPath/$subPackage/model', 'model_get.dart'));
     // futures.add(_generateFile(
@@ -54,11 +68,21 @@ class ProviderTempGen {
     //     '$psiPath/$subPackage/page',
     //     'widget.dart'));
     futures.add(_generateFile(
-        component.stateless, '$psiPath/$subPackage/page', 'view.dart'));
+        temp == Temp.provider
+            ? component.stateless
+            : temp == Temp.stateful
+                ? provider.stateful
+                : provider.stateless,
+        '$psiPath/$subPackage/page',
+        'view.dart'));
     futures.add(_generateFile(
-        component.statelessWidget, '$psiPath/$subPackage/page', 'widget.dart'));
+        temp == Temp.provider ? component.statelessWidget : provider.widget,
+        '$psiPath/$subPackage/page',
+        'widget.dart'));
     futures.add(_generateFile(
-        component.state, '$psiPath/$subPackage/state', 'state.dart'));
+        temp == Temp.provider ? component.state : provider.state,
+        '$psiPath/$subPackage/state',
+        'state.dart'));
     return futures;
   }
 
@@ -68,9 +92,9 @@ class ProviderTempGen {
   }
 
   String _dealFile(String content) {
-    content = content.replaceAll(r'$name', name);
-    content = content.replaceAll(r'$subName', _hump2Underline(name));
-    content = content.replaceAll(r'$stateName', _hump2Underline(name));
+    content = content.replaceAll(r'$name', _upTolower(name));
+    // content = content.replaceAll(r'$subName', _hump2Underline(name));
+    content = content.replaceAll(r'$stateName', name);
     return content;
   }
 
@@ -114,6 +138,18 @@ class ProviderTempGen {
     } else {
       return newString;
     }
+  }
+
+  // 下划线转驼峰
+  String _upTolower(String para) {
+    String newString = '';
+    para.split('_').forEach((element) {
+      newString += element.substring(0, 1).toUpperCase() +
+          element.substring(1).toLowerCase();
+    });
+    return para.contains('_')
+        ? newString
+        : para.substring(0, 1).toUpperCase() + para.substring(1).toLowerCase();
   }
 
   ///判断是否是大写

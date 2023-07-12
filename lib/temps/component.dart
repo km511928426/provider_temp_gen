@@ -9,7 +9,7 @@
  */
 export 'component/bean/bean.dart';
 export 'component/model/model.dart';
-export 'component/model/model_contidion.dart';
+export 'component/model/model_condition.dart';
 // export 'component/model/model_get.dart';
 // export 'component/model/model_set.dart';
 export 'component/page/view.dart';
